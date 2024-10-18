@@ -4,7 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 
 # Set your OpenAI API key
-openai.api_key ='sk-proj-gjnNCzC9won47DEA66RiT3BlbkFJSYmfEEs3dIVUZikUBVhS'
+openai.api_key =''
 
 
 def extract_text_from_pdf(pdf_path):
