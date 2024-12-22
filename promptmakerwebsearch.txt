@@ -1,0 +1,49 @@
+This file contains explanation fo the Python-based PromptAgent class designed to refine user-provided prompts for natural language processing tasks using the OpenAI GPT-3.5-turbo model. The code allows for user interaction, prompt feedback, and web-based information retrieval to enhance the quality of the initial prompts.
+
+Key Features:
+1. User Input:
+   - The agent prompts the user to enter an initial prompt, which is stored for further processing.
+
+2. Prompt Explanation:
+   - The agent explains the purpose of the initial prompt and how it can be refined using structured frameworks like APE, RACE, COAST, TAG, and others.
+
+3. Web Search:
+   - The agent conducts a web search using the Google search engine to gather additional relevant information, which helps enhance the prompt. The search results are then used to provide more context to the OpenAI model during prompt refinement.
+
+4. Prompt Refinement (Initial and Feedback-Based):
+   - The agent sends the initial prompt to OpenAI's GPT-3.5-turbo model for refinement. It uses structured frameworks and the search results to generate a more comprehensive and detailed prompt.
+   - Feedback from the user can also be incorporated to further refine the prompt in an iterative manner.
+
+5. Integration with OpenAI API:
+   - The `openai.ChatCompletion.create` method is used to send the prompts to the GPT-3.5-turbo model, and the refined responses are returned, providing users with optimized prompts for their specific use case.
+
+6. Frameworks for Refinement:
+   - The agent utilizes several frameworks for structuring the prompt refinement process, including:
+     - APE (Action, Purpose, Expectation)
+     - RACE (Role, Action, Context, Expectation)
+     - COAST (Context, Objective, Actions, Scenario, Task)
+     - TAG (Task, Action, Goal)
+     - RISE (Role, Input, Steps, Expectation)
+     - TRACE (Task, Request, Action, Context, Example)
+     - ERA (Expectation, Role, Action)
+     - CARE (Context, Action, Result, Example)
+     - ROSES (Role, Objective, Scenario, Expected Solution, Steps)
+     - COSTAR (Objective, Style, Tone, Audience, Response)
+     - RTF (Role, Task, Format)
+
+Use Case:
+- The PromptAgent class is designed to help users create high-quality prompts for AI-based language models, ensuring the prompts are clear, comprehensive, and aligned with user expectations. It is especially useful for developers and researchers working with OpenAI's GPT models, as it automates the refinement process while incorporating feedback and web search results.
+
+Requirements:
+- `openai`: For interacting with the OpenAI API to generate prompt refinements.
+- `requests`: For sending HTTP requests to perform web searches.
+- `BeautifulSoup`: For parsing and extracting information from the search results.
+
+How to Use:
+1. Initialize the `PromptAgent` with an OpenAI API key.
+2. Use the `get_user_input` method to input an initial prompt.
+3. Use the `refine_prompt_initial` method to refine the prompt using OpenAI.
+4. Provide feedback using the `get_feedback_input` method and further refine the prompt using `refine_prompt_with_feedback`.
+5. View the refined prompt after each iteration.
+
+This tool is ideal for refining natural language prompts for tasks involving AI language models, ensuring high-quality results based on structured frameworks and additional context.
