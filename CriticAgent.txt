@@ -1,0 +1,50 @@
+The provided code is a system for verifying the correctness of an answer to a question using three different verification methods: document-based, web-based, and AI knowledge-based validation.
+
+Key Functions and Workflow:
+
+1. `extract_text_from_pdf(pdf_path)`:
+   - This function extracts the text from a given PDF document using the `PyPDF2` library. It reads each page and concatenates the extracted text into a single string.
+
+2. `ask_openai(prompt)`:
+   - This function sends a prompt to OpenAI's GPT-3.5 API to process the text and return a response. The prompt typically specifies the task or question the AI needs to handle, and the response is returned as a string.
+
+3. `verify_from_document(question, answer, document_text)`:
+   - This function uses the extracted document text to verify the correctness of an answer. It creates a prompt that asks the OpenAI model to check if the answer is correct based on the document's content. It truncates the document if it's too long for practical processing.
+
+4. `search_web(question)`:
+   - This function performs a Google search using the provided question and scrapes the search results using `requests` and `BeautifulSoup`. The scraped web text is returned, which will be used in subsequent verification.
+
+5. `verify_from_web(question, answer, web_text)`:
+   - This function takes the web search results and uses OpenAI to verify if the answer is correct based on the information found online. The AI is asked to review the web text, keeping the focus relevant to the question and document.
+
+6. `ask_openai_for_final_verdict(prompt)`:
+   - This function asks OpenAI to provide a final verdict on whether the answer is correct or incorrect, considering the results from the document, web, and AI knowledge verifications.
+
+7. `question_answer_critic(file_path, question, answer)`:
+   - This is the main orchestrating function that:
+     - Extracts text from a PDF document.
+     - Verifies the answer based on the document.
+     - Performs a web search for additional verification.
+     - Checks the answer using general AI knowledge.
+     - Combines these results and sends a prompt to OpenAI for a final verdict on the answer.
+     - Optionally provides detailed verification feedback to the user, depending on their input.
+
+Process Flow:
+1. Document Verification: The document text is extracted from the PDF, and a prompt is created to verify if the answer is correct based on the document's content.
+2. Web Verification: A web search is conducted to find relevant web content, and a prompt is sent to OpenAI to validate the answer using this external information.
+3. AI Knowledge Verification: The answer is validated against general AI knowledge.
+4. Final Verdict: All three verifications are summarized, and OpenAI is asked for a final decision on whether the answer is correct or incorrect.
+5. Detailed Explanation: The user can opt to see detailed explanations of each verification.
+
+Example Usage:
+The code snippet shows a commented-out example of how to use the `question_answer_critic` function, where:
+- `file_path` is the path to the PDF file.
+- `question` is the user's question.
+- `answer` is the proposed answer.
+
+Dependencies:
+- `openai`: To interact with OpenAI's API.
+- `PyPDF2`: To extract text from PDFs.
+- `requests` and `BeautifulSoup`: For web scraping and search result extraction.
+
+This system combines multiple sources of information to verify the correctness of an answer, providing a more comprehensive verification process.
